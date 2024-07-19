@@ -28,6 +28,31 @@ class CafeKioskTest {
     }
 
 
+    //경계값 분석 - 해피케이스
+    @Test
+    void addSeveralBeverages(){
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+
+        cafeKiosk.add(americano, 2);
+
+        Assertions.assertThat(cafeKiosk.getBeverages().get(0)).isEqualTo(americano);
+        Assertions.assertThat(cafeKiosk.getBeverages().get(1)).isEqualTo(americano);
+    }
+
+    //경계값 분석 - 예외케이스
+    @Test
+    void addZeroBeverages(){
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+
+        Assertions.assertThatThrownBy(()-> cafeKiosk.add(americano,0))
+                        .isInstanceOf(IllegalStateException.class)
+                        .hasMessage("음료는 1잔 이상 주문할 수 있습니다.");
+
+    }
+
+
     @Test
     void remove(){
         CafeKiosk cafeKiosk = new CafeKiosk();
