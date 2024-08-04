@@ -1,10 +1,9 @@
 package sample.cafekiosk.api.service.product.response;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import sample.cafekiosk.domain.product.Product;
-import sample.cafekiosk.domain.product.ProductSellingType;
+import sample.cafekiosk.domain.product.ProductSellingStatus;
 import sample.cafekiosk.domain.product.ProductType;
 
 
@@ -16,7 +15,7 @@ public class ProductResponse {
 
     private ProductType type;
 
-    private ProductSellingType sellingType;
+    private ProductSellingStatus sellingType;
 
     private String name;
 
@@ -24,7 +23,7 @@ public class ProductResponse {
 
 
     @Builder
-    private ProductResponse(Long id, String productNumber, ProductType type, ProductSellingType sellingType, String name, int price) {
+    private ProductResponse(Long id, String productNumber, ProductType type, ProductSellingStatus sellingType, String name, int price) {
         this.id = id;
         this.productNumber = productNumber;
         this.type = type;
@@ -38,7 +37,7 @@ public class ProductResponse {
                 .id(product.getId())
                 .productNumber(product.getProductNumber())
                 .type(product.getType())
-                .sellingType(product.getSellingType())
+                .sellingType(product.getSellingStatus())
                 .name(product.getName())
                 .price(product.getPrice())
                 .build();
